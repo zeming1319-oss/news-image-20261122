@@ -219,7 +219,7 @@ def make_png_pillow():
         try:
             title_font = ImageFont.truetype(font_path, 48)
             subtitle_font = ImageFont.truetype(font_path, 20)
-            card_font = ImageFont.truetype(font_path, 16)
+            card_font = ImageFont.truetype(font_path, 18)
             tag_font = ImageFont.truetype(font_path, 14)
             index_font = ImageFont.truetype(font_path, 32)
         except Exception:
@@ -236,7 +236,7 @@ def make_png_pillow():
         index_font = ImageFont.load_default()
 
     title = "WORLD NEWS \u2014 22 NOVEMBER 2026"
-    subtitle = "Nine stories that shaped the day"
+    subtitle = "Nine stories that shaped the day | 22 Nov 2026"
 
     title_bbox = draw.textbbox((0, 0), title, font=title_font)
     title_w = title_bbox[2] - title_bbox[0]
@@ -323,7 +323,7 @@ def make_png_stdlib():
     scale_headline = 2
 
     title = "WORLD NEWS - 22 NOVEMBER 2026"
-    subtitle = "Nine stories that shaped the day"
+    subtitle = "Nine stories that shaped the day | 22 Nov 2026"
 
     title_w, title_h = measure_text_builtin(title, scale_title)
     draw_text_builtin(surface, (WIDTH - title_w) // 2, 40, title, ACCENT_COLOR, scale_title)
