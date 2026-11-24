@@ -370,15 +370,15 @@ def make_png_pillow():
         index_str = f"{idx + 1:02d}"
         idx_bbox = draw.textbbox((0, 0), index_str, font=index_font)
         idx_h = idx_bbox[3] - idx_bbox[1]
-        draw.text((cx + 16, cy + 16), index_str, font=index_font, fill=ACCENT_COLOR)
+        draw.text((cx + 12, cy + 12), index_str, font=index_font, fill=ACCENT_COLOR)
 
         tag_text = category
         tag_color = TAG_COLORS.get(category, ACCENT_COLOR)
         tag_bbox = draw.textbbox((0, 0), tag_text, font=tag_font)
         tag_w = tag_bbox[2] - tag_bbox[0]
         tag_h = tag_bbox[3] - tag_bbox[1]
-        tag_x = cx + 16
-        tag_y = cy + 16 + idx_h + 8
+        tag_x = cx + 12
+        tag_y = cy + 12 + idx_h + 8
         draw.rounded_rectangle(
             [tag_x - 4, tag_y - 2, tag_x + tag_w + 4, tag_y + tag_h + 2],
             radius=4,
@@ -386,9 +386,9 @@ def make_png_pillow():
         )
         draw.text((tag_x, tag_y), tag_text, font=tag_font, fill=BG_COLOR)
 
-        headline_wrapped = wrap_pillow_text(headline, card_font, card_w - 32)
-        headline_y = tag_y + tag_h + 16
-        draw.text((cx + 16, headline_y), headline_wrapped, font=card_font, fill=TEXT_COLOR)
+        headline_wrapped = wrap_pillow_text(headline, card_font, card_w - 24)
+        headline_y = tag_y + tag_h + 12
+        draw.text((cx + 12, headline_y), headline_wrapped, font=card_font, fill=TEXT_COLOR)
 
     buffer = io.BytesIO()
     img.save(buffer, "PNG")
@@ -427,19 +427,19 @@ def make_png_stdlib():
         fill_rounded_rect(surface, cx, cy, card_w, card_h, 12, CARD_COLOR)
 
         index_str = f"{idx + 1:02d}"
-        draw_text(surface, cx + 16, cy + 16, index_str, ACCENT_COLOR)
+        draw_text(surface, cx + 12, cy + 12, index_str, ACCENT_COLOR)
 
         tag_text = category
         tag_color = TAG_COLORS.get(category, ACCENT_COLOR)
         tag_w, tag_h = measure_text(tag_text)
-        tag_x = cx + 16
-        tag_y = cy + 16 + index_h + 8
+        tag_x = cx + 12
+        tag_y = cy + 12 + index_h + 8
         fill_rounded_rect(surface, tag_x - 4, tag_y - 2, tag_w + 8, tag_h + 4, 4, tag_color)
         draw_text(surface, tag_x, tag_y, tag_text, BG_COLOR)
 
-        headline_wrapped = wrap_text(headline, card_w - 32)
+        headline_wrapped = wrap_text(headline, card_w - 24)
         headline_y = tag_y + tag_h + 12
-        draw_text(surface, cx + 16, headline_y, headline_wrapped, TEXT_COLOR)
+        draw_text(surface, cx + 12, headline_y, headline_wrapped, TEXT_COLOR)
 
     return encode_png(surface)
 
